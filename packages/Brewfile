@@ -1,0 +1,8 @@
+# Curated Homebrew bundle. Fill with your core tools.
+# Example:
+# tap "homebrew/bundle"
+# brew "git"
+# brew "neovim"
+# brew "tmux"
+# cask "alacritty"
+# cask "ghostty"

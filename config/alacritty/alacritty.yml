@@ -1,0 +1,7 @@
+env:
+  ZDOTDIR: /Users/jurvistest/.config/zsh
+
+shell:
+  program: /bin/zsh
+  args:
+    - -l

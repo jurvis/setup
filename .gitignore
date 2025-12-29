@@ -1,2 +1,4 @@
 .DS_Store
-config
+config/**/node_modules
+config/zsh/.zsh_history
+config/zsh/.zcompdump*

@@ -1,0 +1,64 @@
+execute pathogen#infect()
+
+" Map ESC to jk
+inoremap jk <ESC>
+" Map leader to space
+let mapleader = " "
+set clipboard=unnamedplus
+nnoremap gf :vertical wincmd f<CR>
+
+" Dont try to be vi compatible
+set nocompatible
+" Encoding
+set encoding=utf-8
+set number
+"Turn on syntax highlighting
+syntax on
+" Allow backspace in insert mode
+set backspace=indent,eol,start
+
+" Make Indentation Less Painful
+set smarttab
+set cindent
+filetype plugin indent on
+" Make tabs as wide as two spaces
+set tabstop=2
+
+" Highlight searches
+set hlsearch
+" Ignore case of searches
+set ignorecase
+" Highlight dynamically as pattern is typed
+set incsearch
+
+" Automatic commands
+if has("autocmd")
+	" Enable file type detection
+	filetype on
+	" Treat .json files as .js
+	autocmd bufnewfile,bufread *.json setfiletype json syntax=javascript
+	" Treat .md files as Markdown
+	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+	autocmd FileType typescript set tabstop=2|set shiftwidth=2|set expandtab
+endif
+
+filetype plugin on
+
+" Easier Splitting
+nnoremap <C-s> <C-w>s
+" nnoremap <C-v> <C-w>v
+
+" Easier Split Navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Natural splitting
+set splitbelow
+set splitright
+
+" For ALE
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
