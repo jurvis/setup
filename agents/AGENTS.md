@@ -19,6 +19,7 @@ Work style: telegraph; noun-phrases ok; drop grammar; min tokens.
 - Web: search early; quote exact errors; prefer 2024–2025 sources; fallback Firecrawl (`pnpm mcp:*`) / `mcporter`.
 - Oracle: run `npx -y @steipete/oracle --help` once/session before first use.
 - Style: telegraph. Drop filler/grammar. Min tokens (global AGENTS + replies).
+- Skills: create canonical in `~/Projects/setup/agents/skills/<name>`; copy into `~/.codex/skills/<name>` (no symlink).
 
 ## Screenshots (“use a screenshot”)
 - Pick newest PNG in `~/Desktop` or `~/Downloads`.
@@ -91,6 +92,10 @@ Read `~/Projects/agent-scripts/tools.md` for the full tool catalog if it exists.
 ### gh
 - GitHub CLI for PRs/CI/releases. Given issue/PR URL (or `/pull/5`): use `gh`, not web search.
 - Examples: `gh issue view <url> --comments -R owner/repo`, `gh pr view <url> --comments --files -R owner/repo`.
+
+### bird
+- X CLI: `~/Projects/bird/bird`. Cmds: `tweet`, `reply`, `read`, `thread`, `search`, `mentions`, `whoami`.
+- Uses Firefox cookies by default (`--firefox-profile` to switch).
 
 ### tmux
 - Use only when you need persistence/interaction (debugger/server).
