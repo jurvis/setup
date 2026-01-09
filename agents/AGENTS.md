@@ -29,6 +29,7 @@ Work style: telegraph; noun-phrases ok; drop grammar; min tokens.
 
 ## Important Locations
 - Obsidian vault: `$HOME/Documents/Jurvis' Musings/`
+- Zellij config canonical: `~/Projects/setup/config/zellij` (symlink from `~/.config/zellij`).
 
 ## Docs
 - Start: run docs list (`docs:list` script, or `bin/docs-list` here if present; ignore if not installed); open docs before coding.
