@@ -46,7 +46,4 @@
 font-size = 16.0
 
 # Theme
-theme = dark:xcodedark,light:xcodelight
-
-# Shell
-command = env ZDOTDIR=/Users/jurvistest/.config/zsh /bin/zsh -l
+theme = dark:Xcode Dark,light:Xcode Light
