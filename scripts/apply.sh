@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DRY_RUN="${DRY_RUN:-1}"
+DRY_RUN="${DRY_RUN:-0}"
 BACKUP_DIR="${BACKUP_DIR:-$HOME/.config-backup-$(date +%Y%m%d-%H%M%S)}"
 
 log() {
@@ -35,7 +35,12 @@ link_path() {
 
   run mkdir -p "$(dirname "$dest")"
   run ln -s "$src" "$dest"
-  log "LINK: $dest -> $src"
+
+  if [[ "$DRY_RUN" == "1" ]]; then
+    log "DRY LINK: $dest -> $src"
+  else
+    log "LINK: $dest -> $src"
+  fi
 }
 
 # XDG config dirs
@@ -46,6 +51,7 @@ link_path "$ROOT/config/ghostty" "$HOME/.config/ghostty"
 link_path "$ROOT/config/alacritty" "$HOME/.config/alacritty"
 link_path "$ROOT/config/git" "$HOME/.config/git"
 link_path "$ROOT/config/vim" "$HOME/.config/vim"
+link_path "$ROOT/config/zellij" "$HOME/.config/zellij"
 
 # Traditional dotfiles (symlink into XDG)
 link_path "$ROOT/config/zsh/.zshrc" "$HOME/.zshrc"
