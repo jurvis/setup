@@ -52,6 +52,7 @@ link_path "$ROOT/config/alacritty" "$HOME/.config/alacritty"
 link_path "$ROOT/config/git" "$HOME/.config/git"
 link_path "$ROOT/config/vim" "$HOME/.config/vim"
 link_path "$ROOT/config/zellij" "$HOME/.config/zellij"
+link_path "$ROOT/config/gnupg/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
 
 # Traditional dotfiles (symlink into XDG)
 link_path "$ROOT/config/zsh/.zshrc" "$HOME/.zshrc"
