@@ -11,16 +11,6 @@ export EDITOR='nvim'
 
 source $ZSH/oh-my-zsh.sh
 export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
-export PATH=~/.yarn/bin:$PATH
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-# Go Stuff
-export GOPATH=$HOME/code/gocode
-export GOCODE=$GOPATH/src/github.com/jurvis
-export PATH=$PATH:$GOPATH/bin
-
-alias gga="go get -u ./..."
-alias gg="go get -u"
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
@@ -31,18 +21,12 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
 alias g="git"
 alias sl="subl"
 alias h="history"
-alias j="jobs"
-alias gopath="export GOPATH=$(pwd)"
-alias learnhaskell="cd ~/Projects/LearnHaskell"
-alias macaddrgen="openssl rand -hex 6 | sed 's/\(..\)/\1:/g;s/.$//'"
-alias macaddrrestore="sudo ifconfig en0 ether 60:03:08:a2:9b:ae"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -141,34 +125,8 @@ alias spotoff="sudo mdutil -a -i off"
 # Enable Spotlight
 alias spoton="sudo mdutil -a -i on"
 
-# PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
-alias plistbuddy="/usr/libexec/PlistBuddy"
-
-# Ring the terminal bell, and put a badge on Terminal.app’s Dock icon
-# (useful when executing time-consuming commands)
-alias badge="tput bel"
-
-# Intuitive map function
-# For example, to list all directories that contain a certain file:
-# find . -name .gitattributes | map dirname
-alias map="xargs -n1"
-
-# One of @janmoesen’s ProTip™s
-for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-	alias "$method"="lwp-request -m '$method'"
-done
-
 # Make Grunt print stack traces by default
 command -v grunt > /dev/null && alias grunt="grunt --stack"
-
-# Stuff I never really use but cannot delete either because of http://xkcd.com/530/
-alias stfu="osascript -e 'set volume output muted true'"
-alias pumpitup="osascript -e 'set volume 7'"
-alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
-
-# Kill all the tabs in Chrome to free up memory
-# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
-alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
@@ -176,44 +134,9 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
 
-# MacSpoof Shortcuts
-alias macspooflist="spoof-mac.py list"
-alias macspoofscramble="spoof-mac.py randomize en0"
-alias macspoofreset="spoof-mac.py reset wi-fi"
-
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# Blog
-alias postdir="cd ~/Projects/001_toclear/new-new-jurvis/src/pages/posts/"
-
-
-# Tmuxinator
-alias tx="tmuxinator"
-
-# Docker
-alias docker_clean_images='docker rmi $(docker images -a --filter=dangling=true -q)'
-alias docker_clean_ps='docker rm $(docker ps --filter=status=exited --filter=status=created -q)'
-
-# added by travis gem
-[ ! -s /Users/jurvistan/.travis/travis.sh ] || source /Users/jurvistan/.travis/travis.sh
-
-eval "$(rbenv init -)"
-
-# Android
-export ANDROID_HOME=$HOME/Library/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init --path)"
-fi
-
-export PATH="$PATH:/Users/jurvistest/ch-darwin-arm64"
-export LDK_SWIFT_GENERATOR_INPUT_HEADER_PATH="/Users/jurvistest/Projects/ldk/ldk-c-bindings/lightning-c-bindings/include/lightning.h"
 
 # GPG
 envfile="$HOME/.gnupg/gpg-agent.env"
