@@ -570,10 +570,14 @@ require("lazy").setup({
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
-				-- clangd = {},
+				clangd = {},
+				dockerls = {},
+				marksman = {},
+				protols = {},
+				pyright = {},
+				rust_analyzer = {},
+
 				-- gopls = {},
-				-- pyright = {},
-				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
 				-- Some languages (like typescript) have entire language plugins that can be useful:
@@ -611,6 +615,11 @@ require("lazy").setup({
 			-- for you, so that they are available from within Neovim.
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
+				"buf",
+				"clang-format",
+				"markdownlint",
+				"ruff",
+				"rustfmt",
 				"stylua", -- Used to format Lua code
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
@@ -645,18 +654,20 @@ require("lazy").setup({
 		},
 		opts = {
 			notify_on_error = false,
-			format_on_save = function(bufnr)
-				-- Disable "format_on_save lsp_fallback" for languages that don't
-				-- have a well standardized coding style. You can add additional
-				-- languages here or re-enable it for the disabled ones.
-				local disable_filetypes = { c = true, cpp = true }
+			format_on_save = function()
 				return {
 					timeout_ms = 500,
-					lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+					lsp_fallback = true,
 				}
 			end,
 			formatters_by_ft = {
+				c = { "clang-format" },
+				cpp = { "clang-format" },
 				lua = { "stylua" },
+				markdown = { "markdownlint" },
+				proto = { "buf" },
+				python = { "ruff_fix", "ruff_format" },
+				rust = { "rustfmt", lsp_format = "fallback" },
 				-- Conform can also run multiple formatters sequentially
 				-- python = { "isort", "black" },
 				--

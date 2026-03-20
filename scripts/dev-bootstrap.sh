@@ -145,6 +145,22 @@ install_rust() {
   curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | sh -s -- -y
 }
 
+install_uv() {
+  log "Installing uv"
+
+  if command -v uv >/dev/null 2>&1; then
+    log "uv already installed"
+    return 0
+  fi
+
+  if [[ "$DRY_RUN" == "1" ]]; then
+    log "DRY: curl https://astral.sh/uv/install.sh | sh"
+    return 0
+  fi
+
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+}
+
 load_rust_env() {
   if [[ "$DRY_RUN" == "1" ]]; then
     return 0
@@ -178,6 +194,7 @@ load_nvm
 install_node_and_clis
 install_rust
 load_rust_env
+install_uv
 need_cmd cargo
 install_zellij
 
