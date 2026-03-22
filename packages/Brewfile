@@ -21,6 +21,7 @@ brew "tmux"
 brew "gnupg"
 
 cask "chatgpt"
+cask "alfred"
 cask "ghostty"
 cask "hiddenbar"
 cask "karabiner-elements"
