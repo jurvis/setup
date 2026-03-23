@@ -1,0 +1,4 @@
+interface:
+  display_name: "Supabase CLI"
+  short_description: "Operate Supabase via the official CLI"
+  default_prompt: "Use $supabase-cli to work with a Supabase project through the official CLI."
