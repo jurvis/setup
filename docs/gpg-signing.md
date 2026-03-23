@@ -13,7 +13,7 @@ This is the step-by-step checklist for moving Git commit signing from an old Mac
 ## Files In This Repo
 
 - `packages/Brewfile`: installs `git`, `gnupg`, and `pinentry-mac`
-- `scripts/install.sh`: runs `brew bundle`
+- `scripts/install.sh`: installs Nix if needed, then runs `brew bundle`
 - `scripts/apply.sh`: links tracked config into place
 - `config/git/config`: Git identity and commit-signing defaults
 - `config/gnupg/gpg-agent.conf`: canonical `gpg-agent` config for future machines
@@ -95,13 +95,19 @@ git clone <your-setup-repo-url> setup
 cd setup
 ```
 
-3. Install packages from this repo.
+3. Install Nix.
+
+```bash
+curl -L https://nixos.org/nix/install | sh -s -- --daemon
+```
+
+4. Install packages from this repo.
 
 ```bash
 bash scripts/install.sh
 ```
 
-4. Link the tracked config from this repo.
+5. Link the tracked config from this repo.
 
 ```bash
 bash scripts/apply.sh
@@ -109,9 +115,9 @@ bash scripts/apply.sh
 
 This includes the canonical [`gpg-agent.conf`](../config/gnupg/gpg-agent.conf).
 
-5. Move the encrypted export bundle from the old Mac onto the new Mac, for example into `~/Downloads`.
+6. Move the encrypted export bundle from the old Mac onto the new Mac, for example into `~/Downloads`.
 
-6. Decrypt and unpack it.
+7. Decrypt and unpack it.
 
 ```bash
 cd ~/Downloads
@@ -119,53 +125,53 @@ gpg -d gpg-move.tar.gz.gpg > gpg-move.tar.gz
 tar -xzf gpg-move.tar.gz
 ```
 
-7. Import the public key.
+8. Import the public key.
 
 ```bash
 gpg --import ~/Downloads/gpg-move/public-key.asc
 ```
 
-8. Import the secret key.
+9. Import the secret key.
 
 ```bash
 gpg --import ~/Downloads/gpg-move/secret-key.asc
 ```
 
-9. Import ownertrust.
+10. Import ownertrust.
 
 ```bash
 gpg --import-ownertrust ~/Downloads/gpg-move/ownertrust.txt
 ```
 
-10. If GPG is used for SSH too, restore `sshcontrol`.
+11. If GPG is used for SSH too, restore `sshcontrol`.
 
 ```bash
 [ -f ~/Downloads/gpg-move/sshcontrol ] && cp ~/Downloads/gpg-move/sshcontrol ~/.gnupg/sshcontrol
 chmod 600 ~/.gnupg/sshcontrol 2>/dev/null || true
 ```
 
-11. Restart `gpg-agent`.
+12. Restart `gpg-agent`.
 
 ```bash
 gpgconf --kill gpg-agent
 gpgconf --launch gpg-agent
 ```
 
-12. Open a fresh terminal window.
+13. Open a fresh terminal window.
 
-13. Confirm the secret key exists.
+14. Confirm the secret key exists.
 
 ```bash
 gpg --list-secret-keys --keyid-format LONG
 ```
 
-14. Test raw GPG signing.
+15. Test raw GPG signing.
 
 ```bash
 echo "test" | gpg --clearsign
 ```
 
-15. Test a signed Git commit in a throwaway repo.
+16. Test a signed Git commit in a throwaway repo.
 
 ```bash
 mkdir -p ~/tmp/git-signing-test
