@@ -4,6 +4,8 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DRY_RUN="${DRY_RUN:-0}"
 BACKUP_DIR="${BACKUP_DIR:-$HOME/.config-backup-$(date +%Y%m%d-%H%M%S)}"
+DEFAULT_OBSIDIAN_VAULT_DIR="$HOME/Documents/Jurvis"$'\' Musings'
+OBSIDIAN_VAULT_DIR="${OBSIDIAN_VAULT_DIR:-$DEFAULT_OBSIDIAN_VAULT_DIR}"
 
 log() {
   printf '%s\n' "$*"
@@ -61,3 +63,17 @@ link_path "$ROOT/config/zsh/.zprofile" "$HOME/.zprofile"
 link_path "$ROOT/config/tmux/tmux.conf" "$HOME/.tmux.conf"
 link_path "$ROOT/config/git/config" "$HOME/.gitconfig"
 link_path "$ROOT/config/vim/vimrc" "$HOME/.vimrc"
+
+# Obsidian vault config
+link_path "$ROOT/config/obsidian/vault/.obsidian/app.json" "$OBSIDIAN_VAULT_DIR/.obsidian/app.json"
+link_path "$ROOT/config/obsidian/vault/.obsidian/appearance.json" "$OBSIDIAN_VAULT_DIR/.obsidian/appearance.json"
+link_path "$ROOT/config/obsidian/vault/.obsidian/community-plugins.json" "$OBSIDIAN_VAULT_DIR/.obsidian/community-plugins.json"
+link_path "$ROOT/config/obsidian/vault/.obsidian/core-plugins.json" "$OBSIDIAN_VAULT_DIR/.obsidian/core-plugins.json"
+link_path "$ROOT/config/obsidian/vault/.obsidian/daily-notes.json" "$OBSIDIAN_VAULT_DIR/.obsidian/daily-notes.json"
+link_path "$ROOT/config/obsidian/vault/.obsidian/graph.json" "$OBSIDIAN_VAULT_DIR/.obsidian/graph.json"
+link_path "$ROOT/config/obsidian/vault/.obsidian/hotkeys.json" "$OBSIDIAN_VAULT_DIR/.obsidian/hotkeys.json"
+link_path "$ROOT/config/obsidian/vault/.obsidian/publish.json" "$OBSIDIAN_VAULT_DIR/.obsidian/publish.json"
+link_path "$ROOT/config/obsidian/vault/.obsidian/templates.json" "$OBSIDIAN_VAULT_DIR/.obsidian/templates.json"
+link_path "$ROOT/config/obsidian/vault/.obsidian/types.json" "$OBSIDIAN_VAULT_DIR/.obsidian/types.json"
+link_path "$ROOT/config/obsidian/vault/.obsidian/plugins/dataview" "$OBSIDIAN_VAULT_DIR/.obsidian/plugins/dataview"
+link_path "$ROOT/config/obsidian/vault/.obsidian/themes/Minimal" "$OBSIDIAN_VAULT_DIR/.obsidian/themes/Minimal"
