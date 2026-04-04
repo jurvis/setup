@@ -51,7 +51,7 @@ fi
 log "Applying keyboard defaults"
 write_bool -g NSAutomaticSpellingCorrectionEnabled false
 write_bool -g ApplePressAndHoldEnabled false
-write_int -g KeyRepeat 1
+write_int -g KeyRepeat 2
 write_int -g InitialKeyRepeat 10
 
 log "Disabling Spotlight shortcut so Alfred can use it"
